@@ -28,5 +28,27 @@ response = open_handler.open('https://httpbin.org//basic-auth/user/passwd')
 
 print(response.read())
 
+str =  'pythön!'
 
+# encoding
 
+response = requests.get("https://api.github.com/")
+print(response.encoding)
+
+# encoding convertrer
+text = 'some str'
+print(text.encode())
+
+from sys import getdefaultencoding
+
+print(getdefaultencoding())
+test = 'ЪЪЇііІ & hello'
+print(test.encode())
+print(test.encode('ascii', errors='ignore'))
+print(test.encode('ascii', errors='replace'))
+print(test.encode('ascii', errors='xmlcharrefreplace'))
+print(test.encode('ascii', errors='backslashreplace'))
+
+text_encoded = '\xd0\xaa\xd0\xaa\xd0\x87\xd1\x96\xd1\x96\xd0\x86'.encode()
+
+print(text_encoded.decode(encoding='UTF-8', errors='strict'))
