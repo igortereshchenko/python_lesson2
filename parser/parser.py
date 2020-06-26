@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+import re
 request = requests.get('https://www.pravda.com.ua/news/')
 # print(request.text)
 
@@ -22,8 +22,19 @@ articles = soup.find_all("div",{"class":"article"})
 
 articles = soup.select('div .news.news_all>div.article>div.article__title>a' )
 for article in articles:
-    print(article.attrs['href'])
-    print(article.string)
+    url = article.attrs['href']
+    result = re.match(r'^(http)|^(https)', url)
+    if result:
+        response = requests.get(url)
+        print(response)
+    else:
+        response = requests.get('https://www.pravda.com.ua'+url)
+        print(response)
+
+    # print(article.string)
+
+
+
 
     # print(article_url)
 # print(result)
